@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles.css">
+    </head>
+
+<body onload="loadPageInfo()">
+    <div class="container">
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html">Komputerstore</a>
+          </nav>
+        <div class="row">
+            <div class="col-sm top">
+                <h3>Joe Banker</h3>
+                <p id="textBalance"></p>
+                <button id="btnLoan" onclick="getLoan()">Get a loan</button>
+            </div>
+            <div class="col-sm top">
+                <h3>Work</h3>
+                <p id="textPayBalance"></p>
+                <button id="btnBank" onclick="getBank()">Bank</button>
+                <button id="btnWork" onclick="getWork()">Work</button>
+            </div>
+            <div class="col-sm top">
+                <h3>Laptops</h3>
+                <select id="selectLaptop" onchange="selectedLaptop(this)">
+                </select>
+                <div class="feature">Features: </div>
+                <div id="laptopFeatureList"></div>
+            </div>
+        </div>
+        <div class="row" style="background-color: lightgray">
+            <div class="col-sm">
+                <img id="laptopImage">
+            </div>
+            <div class="col-sm">
+                <h4 id="laptopTitle"></h6>
+                <div id="laptopDescription"></div>
+            </div>
+            <div class="col-sm">
+                <h6 id="laptopPrice"></h6>
+                <button id="btnBuyNow" onclick="getBuyNow()">BUY NOW</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="../main.js"></script>
+
+</html>

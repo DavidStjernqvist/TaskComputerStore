@@ -1,0 +1,43 @@
+button{
+    display:block;
+    cursor: pointer;
+    border-radius: 8px;
+    border:none;
+    font-size:16px;
+    text-align: center;
+    width: 100%;
+}
+#btnBank{
+    background-color: yellow;
+}
+#btnWork{
+    background-color: blue;
+    color: white;
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
+#btnBuyNow{
+    background-color: lightblue;
+    margin-top: 50px;
+    border:5px;
+}
+#btnLoan{
+    background-color: lightgreen;
+}
+#laptopImage{
+    width: 130px;
+    height: 130px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.row{
+    margin: 5px;
+}
+.feature{
+    font-size: 16px;
+    font-weight: bold;
+}
+.top{
+    margin: 5px;
+    background-color: beige;
+}
