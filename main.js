@@ -99,7 +99,7 @@ function selectedLaptop(selectObject) {
     laptopPosition = selectObject.value;
     getLaptopFeatureList();
 }
-
+ 
 function getLaptopFeatureList() {
     let featureListHTML = "";
     const laptop = laptopData[laptopPosition];
