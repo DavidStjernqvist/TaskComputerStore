@@ -19,21 +19,22 @@ const laptopData = [
 let laptopPosition = 0;
 
 let bankBalance = 20000;
-let loanCount = 0;
+let hasLoan = false;
 let payBalance = 0;
-let balance = document.getElementById('textBalance');
 
 const updateBalanceText = () => document.getElementById('textBalance').innerHTML = `Balance: ${bankBalance} kr`;
 const updatePayText = () => document.getElementById('textPayBalance').innerHTML = `Pay: ${payBalance} kr`;
 
-function loadPageInfo() {
+//IIFE, self execute to load the values to the index page
+( () => {
     updateBalanceText();
     updatePayText();
     getLaptops();
     getLaptopFeatureList();
     getLaptopInfo();
-}
+})();
 
+//Takes the user input and alerts the user with the result
 function getLoan() {
     console.log("In get loan: ");
 
@@ -46,25 +47,27 @@ function getLoan() {
     alert(resMessage);
     updateBalanceText();
 }
+//Checks if the user has a loan or if the user can loan and returns a string with the result
 const checkLoan = (amount) => {
     let resMessage = '';
-    if (loanCount > 0)
+    if (hasLoan === true)
         resMessage = 'You already have a active loan';
     else if (amount <= (bankBalance * 2) && amount > 0) {
         bankBalance += amount;
         resMessage = 'LOAN ACCEPTED';
-        loanCount++;
+        hasLoan = true;
     }
     else {
         resMessage = 'NOT ACCEPTED';
     }
     return resMessage;
 }
-
+//Updates payBalance by a 100
 function getWork() {
     payBalance += 100;
     updatePayText();
 }
+//Gets the user input and display the alert with a message
 function getBank() {
     let amount = prompt(`How much do you want to transfer to your bank balance? (Balance: ${payBalance} kr)`);
     let payAmountTransfer = Number(amount);
@@ -73,6 +76,7 @@ function getBank() {
     updateBalanceText();
     updatePayText();
 }
+//Checks if the transfer is suceeded and returns a string with the result
 const checkTransfer = (payAmountTransfer) => {
     let resMessage = '';
 
@@ -86,7 +90,7 @@ const checkTransfer = (payAmountTransfer) => {
 
     return resMessage;
 }
-
+//Puts all the laptops in select
 function getLaptops() {
     let optionsHTML = "";
     for (let i = 0; i < laptopData.length; i++) {
@@ -94,12 +98,12 @@ function getLaptops() {
     }
     document.getElementById('selectLaptop').innerHTML = optionsHTML
 }
-
+//Gets the selectedlaptops id
 function selectedLaptop(selectObject) {
     laptopPosition = selectObject.value;
     getLaptopFeatureList();
 }
- 
+ //Present the featurelist for the selected laptop
 function getLaptopFeatureList() {
     let featureListHTML = "";
     const laptop = laptopData[laptopPosition];
@@ -109,7 +113,7 @@ function getLaptopFeatureList() {
     document.getElementById('laptopFeatureList').innerHTML = featureListHTML;
     getLaptopInfo();
 }
-
+//Gets the laptop info
 function getLaptopInfo() {
     const laptop = laptopData[laptopPosition];
     document.getElementById('laptopImage').src = laptop.image;
@@ -117,7 +121,7 @@ function getLaptopInfo() {
     document.getElementById('laptopDescription').innerHTML = laptop.description;
     document.getElementById('laptopPrice').innerHTML = laptop.price;
 }
-
+//Checks if the user can buy the laptop and alerts the user with the result
 function getBuyNow() {
     const laptop = laptopData[laptopPosition];
     let message = '';
@@ -126,7 +130,7 @@ function getBuyNow() {
     else {
         bankBalance = bankBalance - laptop.price;
         message = "You are now the owner of this laptop!"
-        loanCount--;
+        hasLoan = false;
     }
     alert(message);
     updateBalanceText();
